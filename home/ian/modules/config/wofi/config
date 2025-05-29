@@ -1,0 +1,5 @@
+show=run
+matching=fuzzy
+gtk-dark=true
+display_generic=true
+sort-order=alphabetical
