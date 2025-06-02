@@ -25,7 +25,19 @@
       enable = true;
       userName = "ian";
       userEmail = "iansyd@gmail.com";
-      ignores = [ "*~" "*.swp" "result" "tempfile" "*.kate-swp"]
+      ignores = [ "*~" "*.swp" "result" "tempfile" "*.kate-swp"];
+    };
+
+    #Install Neovim and the default editor
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      extraConfig =
+        ''
+        set number
+        set ruler
+        ''
+      ;
     };
   };
 }

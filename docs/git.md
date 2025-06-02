@@ -10,12 +10,11 @@ $ which git
 Or
 $ git --version
 
-# What is the difference here?
-git add .
-git add *
+# commit
+$ git commit -m "Commit description"
 
-git commit -m "Commit description"
-
+# push
+$ git push github main
 
 Setting up Git on github configuration backup
 ---------------------------------------------
@@ -49,7 +48,7 @@ c. create a folder for the repository e.g.
    $ mkdir myrepo
 d. Create a link to the remote repo i.e. 
    $ git remote add <name> <link> # where name is something you choose e.g. NixOs-config and link is from step 3b above
-d. $ git add *
+d. $ git add .
 e. $ git commit -m "initial"
 f. $ git push github main
 (Authenticit check will be required for the first upload)
@@ -59,7 +58,7 @@ $ git init # in the directory to manage
 
 ### Pushing to GIT
 
-a. Staging:     $ git add *
+a. Staging:     $ git add .
 b. Commit:      $ git commit -m "<message>"
 # where <message> is a short description of the reason for the change
 c. Push:        $ git push <name> main

@@ -16,6 +16,7 @@
         nixup = "sudo nixos-rebuild switch --flake ~/dotfiles";
         nixuptest = "sudo nixos-rebuild test --flake ~/dotfiles";
         vim = "nvim";
+        v = "nvim";
       };
       shellInitLast = "neofetch";
       functions = {
@@ -23,14 +24,14 @@
           if count $argv > /dev/null
             echo "...cd ~/dotfiles"
             cd ~/dotfiles
-            echo "...git add *"
-            git add *
+            echo "...git add ."
+            git add .
             echo "...git commit -m $argv"
             git commit -m $argv
             echo "...git push NixOS-config main"
             git push NixOS-config main
           else
-            echo "**Error - git add * ONLY. Add a message for the commit"
+            echo "**Error - missing message. Use git add . "message re this commit"
           end
         '';
 

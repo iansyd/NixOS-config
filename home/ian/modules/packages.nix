@@ -9,6 +9,7 @@
     brave # browser
     calibre
     freecad
+    klavaro
     libreoffice-qt6-fresh
     meld
     #microsoft-edge # depreciated

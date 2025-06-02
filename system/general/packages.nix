@@ -15,13 +15,15 @@
 
     # utilities
     bat # an alternative to cat
+
     dysk # a better df -H
     efibootmgr
     gparted
     mc
     neofetch
     nethogs # A small 'net top' tool that groups traffic by process to show what is using bandwith
-    nixfmt-rfc-style
+    noto-fonts-cjk-sans #Chinese, Japanese & Korean fonts
+    noto-fonts-cjk-serif #Chinese, Japanese & Korean fonts
     os-prober # For finding the windows boot loader when creatign the boot menu
     p7zip # provider of 7zip
     qdirstat
@@ -30,9 +32,13 @@
     wget
     wl-clipboard
 
+    cmatrix # simulate matix chars
+    unimatrix
+
     #Editor
     vim # An editor to edit configuration.nix
-    neovide
+    #neovide
+
 
 
     # git related packages

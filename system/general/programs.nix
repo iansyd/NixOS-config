@@ -6,6 +6,7 @@ programs = {
     # Install firefox.
     firefox.enable = true;
 
+
     #Install Neovim and the default editor
     neovim = {
       enable = true;

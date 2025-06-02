@@ -19,7 +19,7 @@
         wm = "kde";
         font = "Intel One Mono"; # Selected font
         fontPkg = pkgs.intel-one-mono; # Font package
-        editor = "neovide"; # Default editor;
+        #editor = "nvim"; #"neovide"; # Default editor;
       };
 
       # ----- THE REST ----- #
