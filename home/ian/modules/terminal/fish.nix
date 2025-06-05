@@ -22,16 +22,16 @@
       functions = {
         gitsave = ''
           if count $argv > /dev/null
-            echo "...cd ~/dotfiles"
-            cd ~/dotfiles
-            echo "...git add ."
-            git add .
-            echo "...git commit -m $argv"
-            git commit -m $argv
-            echo "...git push NixOS-config main"
-            git push NixOS-config main
+              echo "...cd ~/dotfiles"
+              cd ~/dotfiles
+              echo "...git add ."
+              git add .
+              echo "...git commit -m $argv"
+              git commit -m $argv
+              echo "...git push NixOS-config main"
+              git push NixOS-config main
           else
-            echo "**Error - missing message. Use git add . "message re this commit"
+              echo "**Error - missing message. Use git add . \"message re this commit\""
           end
         '';
 
