@@ -14,11 +14,15 @@
     "flakes"
   ];
 
-  # Enable home-manager
+  # Enable home-manager & logitech unify dongle and mouse
   environment.systemPackages = [
     pkgs.home-manager
+    pkgs.logitech-udev-rules
   ];
-
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

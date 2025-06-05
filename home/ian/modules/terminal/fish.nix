@@ -20,7 +20,7 @@
       };
       shellInitLast = "neofetch";
       functions = {
-        gitup = ''
+        gitsave = ''
           if count $argv > /dev/null
             echo "...cd ~/dotfiles"
             cd ~/dotfiles
