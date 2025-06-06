@@ -231,21 +231,34 @@ nix.settings.experimental-features = [
 ];
 ```
 d. Update the hostname and any other relevant info in ~/dotfiles/flake.nix - including the host name in the nixosConfigurations expression
-d. Rebuild
+e. Rebuild
 ```
 > git add .
 > git commit -m "some relevant comment for the changes made"
 > sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
 > home-manager switch --flake ~/dotfiles
 ```
+f. Correct the git repository name
+```
+git remote remove origin
+git remote add NixOS-config git@github.com:iansyd/NixOS-config.git
+```
 
 7. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 
-8a. Open Brave
-8b. Set up sync to an existing account
+a. Open Brave
+b. Select the hamburger menu on top right
+c. Select Settings
+d. Select the hambuger menu on top left, then Sync
+b. Set up sync to an existing account
 
 8. Set up Edge Browser. I did not sort out how to do this declaritavly (if it is possible) so instead...
-9a. Open Edge
-9b. Set up sync to an existing account
+a. Install microsoft edge from the flatpak repo
+```
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install com.microsoft.Edge
+```
+b. Open Edge
+c. Set up sync to an existing account
 
 9. Set up Onedriver. I did not sort out how to do this declaritavly (if it is possible) so instead... 
 a. create a folder ~/OneDrive

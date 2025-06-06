@@ -71,9 +71,9 @@ $ cd ~/.dotfiles
 $ git clone <link> . # where <link> is the github link as in step 3. c.
 Alternatively can use $ git pull <name> main  
 The upload may have been remaned from main to orign. Check with
-$ git remote # it will probably be origin change withg...
+$ git remote # it will probably be origin change with ...
 $ git remote remove origin
-$ git remote add github <link> # wiht link as per above
+$ git remote add github <link> # with link as per above
 
 ## Notes on a gotcha
 
