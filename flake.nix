@@ -55,6 +55,20 @@
           };
         };
 
+        dellMiniLaptop = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ././hosts/dellMiniLaptop
+            nix-index-database.nixosModules.nix-index
+            # optional to also wrap and install comma
+            { programs.nix-index-database.comma.enable = true; }
+          ];
+          specialArgs = {
+            inherit userSettings;
+            inherit inputs;
+          };
+        };
+
         jupiterH470-nvme = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
