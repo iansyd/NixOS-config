@@ -36,7 +36,7 @@
   };
 
   networking = {
-	hostName = "dellLaptop";
+	hostName = "dellMiniLaptop";
 	networkmanager.enable = true;
 	enableIPv6 = false;
 	#firewall.enable = false;
