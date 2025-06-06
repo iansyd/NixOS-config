@@ -99,79 +99,6 @@ More complex scripts are normally saved as functions in the folder
 and made live using home-manager with a new line for each aded function
 
 
-Setting up Git on github configuration backup
------------------------------------
-
-Based on video at https://www.youtube.com/watch?v=20BN4gqHwaQ&t=121s
-
-### Initial setup
-
-1. Create an SSH key on your PC
-$ ssh-keygen -t rsa
-(I used a blank passphrase)
-This generates a private key in ~/.ssh/id_rsa & a public key in ~/.ssh/id_rsa.pub
-
-2. Create a git repo
-login to git
-Create an SSH key. On github...
-a. In the upper-right corner of any page on GitHub, click your profile photo, then click Settings
-b. In the "Access" section of the sidebar, click "SSH and GPG keys"
-c. Click "New SSH key"
-d. Give it a "Title" that explains how the key will be used
-e. Select the "key type" of Authentication Key
-e. Copy the key from the file ~/.ssh/????.pub (generated in step 1) into the "key" field.
-f. Click on "Add SSH key"
-g. Create a repo (dropdown create new)
-h. Give it a name, and make it private with no readme, then click "create repository"
-
-3. Set up on the PC
-a. on github within the created repo select code>local>SSH
-b. and copy the github link - somethign like "git@github.com:iansyd/NixOS-config.git"
-c. create a folder for the repository e.g.
-   $ mkdir myrepo
-d. Create a link to the remote repo i.e. 
-   $ git remote add <name> <link> # where name is something you choose e.g. github and link is from step 3b above
-d. $ git add *
-e. $ git commit -m "initial"
-f. $ git push github main
-(Authenticit check will be required for the first upload)
-
-4. add git into the home-manager file
-$ git init # in the directory to manage
-
-### Pushing to GIT
-
-a. Staging:     $ git add *
-b. Commit:      $ git commit -m "<message>"
-# where <message> is a short description of the reason for the change
-c. Push:        $ git push <name> main
-# where <name is same as step 3
-(Authenticit check will be required for the first upload)
-
-### restoring from git
-
-$ cd ~/.dotfiles
-$ git clone <link> . # where <link> is the github link as in step 3. c.
-Alternatively can use $ git pull <name> main  
-The upload may have been remaned from main to orign. Check with
-$ git remote # it will probably be origin change withg...
-$ git remote remove origin
-$ git remote add github <link> # wiht link as per above
-
-## Notes on a gotcha
-
-if a new file is added into the home-manager directory and it has never been staged
-then an error will pop up when you attempt to update home-manager with
-$home-manager switch --flake .
-To fix this the new file  must be added using
-$ git add <addedfile>
-
-## Action on getting an "is not owned by current user" message when using nixos-rebuild
-
-If this happens then use the --use-remote-sudo option instead of sudo command, i.e.
-$ nixos-rebuild switch --use-remote-sudo --flake .
-
-
 Working with Nix files
 ----------------------
 
@@ -248,16 +175,16 @@ Used to find file names
 $ find . -name filename
 
 
-Reinstalling from Scratch - version 2 
-=====================================
+Reinstalling from Scratch using github configuration 
+====================================================
+Based on video at https://www.youtube.com/watch?v=20BN4gqHwaQ&t=121s
+
 1. Create an SSH key on your PC
 $ ssh-keygen -t rsa
 (I used a blank passphrase)
 This generates a private in ~/.ssh/id_rsa & a public key in ~/.ssh/id_rsa.pub
 
-2. Create a dotfiles home folder ~/dotfiles
-
-3. Copy and paste your public ssh key into github...
+2. Copy and paste your public ssh key into github...
 a. In the upper-right corner of any page on GitHub, click your profile photo, then click Settings
 b. In the "Access" section of the sidebar, click "SSH and GPG keys"
 c. Click "New SSH key" or "Add SSH key"
@@ -266,7 +193,7 @@ e. Select the "key type" of Authentication Key
 e. Copy the key from the file ~/.ssh/????.pub (generated in step 1) into the "key" field.
 f. Click on "Add SSH key"
 
-4. In a terminal...
+3. In a terminal...
 a. Temporarily install git using nix-shell then move to the home directory i.e.
 ```
 > nix-shell -p git
@@ -275,29 +202,25 @@ a. Temporarily install git using nix-shell then move to the home directory i.e.
 > git config --global user.name "IanS"
 ```
 
-5. Clone the git repo
+4. Clone the git repo
 a. On GitHub, navigate to the main page of the repository.
 b. Above the list of files, click Code.
 c. Click on SSH.
 d. Copy the path to the repo (something like git@github.com:iansyd/NixOS-config.git) to the clipboard.
-e. In the terminal opened at step 4. call git clone using the repo path from step e. above e.g.
+e. In the terminal opened at step 3. call git clone using the repo path from step e. above e.g.
 ```
 > git clone git@github.com:iansyd/NixOS-config.git
 ```
 f. When prompted type yes to accept the connection to github
 g. Once it has been cloned then rename the cloned folder to dotfiles
-h. refresh (although maybe this is not neccessary?)
-```
-> git pull origin main
-```
 
-6. Now change channel, then rebuild
+5. Now change channel, then rebuild
 ```
 > nix-channel --add https://nixos.org/channels/nixos-unstable
 > nix-channel --update
 ```
 
-7. Update the dotfile configuration files for this hardware
+6. Update the dotfile configuration files for this hardware
 a. Replace/update the hardware-configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
 b. Check the configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
 c. add to /etc/nixos/configuration.nix:
@@ -310,21 +233,21 @@ nix.settings.experimental-features = [
 d. Update the hostname and any other relevant info in ~/dotfiles/flake.nix - including the host name in the nixosConfigurations expression
 d. Rebuild
 ```
-> git add *
+> git add .
 > git commit -m "some relevant comment for the changes made"
 > sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
 > home-manager switch --flake ~/dotfiles
 ```
 
-8. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 
+7. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 
 8a. Open Brave
 8b. Set up sync to an existing account
 
-9. Set up Edge Browser. I did not sort out how to do this declaritavly (if it is possible) so instead...
+8. Set up Edge Browser. I did not sort out how to do this declaritavly (if it is possible) so instead...
 9a. Open Edge
 9b. Set up sync to an existing account
 
-10. Set up Onedriver. I did not sort out how to do this declaritavly (if it is possible) so instead... 
+9. Set up Onedriver. I did not sort out how to do this declaritavly (if it is possible) so instead... 
 a. create a folder ~/OneDrive
 b. Select menu item Utilities->Onedriver
 c. Follow the prompts
@@ -334,7 +257,18 @@ Configure panels and widgets to suit
 Add and configure KDE Krohnkite to enable tiling windows managemetn
 To sort out - panel configurations etc in KDE
 
+## Notes on a gotcha
 
+if a new file is added into the home-manager directory and it has never been staged
+then an error will pop up when you attempt to update home-manager with
+$home-manager switch --flake .
+To fix this the new file  must be added using
+$ git add <addedfile>
+
+## Action on getting an "is not owned by current user" message when using nixos-rebuild
+
+If this happens then use the --use-remote-sudo option instead of sudo command, i.e.
+$ nixos-rebuild switch --use-remote-sudo --flake .
 
 To Do
 =====
