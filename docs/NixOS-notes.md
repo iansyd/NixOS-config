@@ -264,6 +264,7 @@ c. Set up sync to an existing account
 a. create a folder ~/OneDrive
 b. Select menu item Utilities->Onedriver
 c. Follow the prompts
+d. That didnot work so 
 This is not a sync client. Instead of syncing files, onedriver performs an on-demand download of files when your computer attempts to use them.
 
 Configure panels and widgets to suit
