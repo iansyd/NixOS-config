@@ -11,10 +11,11 @@
     freecad
     klavaro
     libreoffice-qt6-fresh
-    marksman # for markup links
+    marksman # for markup links in kate
     meld
     #microsoft-edge # depreciated
     #teams
+    nil # analysis assistant for writing in Nix
     notepadqq
     onedriver
     qbittorrent
