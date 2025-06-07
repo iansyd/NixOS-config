@@ -231,17 +231,21 @@ nix.settings.experimental-features = [
 ];
 ```
 d. Update the hostname and any other relevant info in ~/dotfiles/flake.nix - including the host name in the nixosConfigurations expression
-e. Rebuild
+e. Correct the git repository name
+```
+cd ~/dotfiles
+git remote remove origin
+git remote add NixOS-config git@github.com:iansyd/NixOS-config.git
+```
+f. Rebuild
+```
+sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
+> home-manager switch --flake ~/dotfiles
+```
+g.. Uupdate git
 ```
 > git add .
 > git commit -m "some relevant comment for the changes made"
-> sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
-> home-manager switch --flake ~/dotfiles
-```
-f. Correct the git repository name
-```
-git remote remove origin
-git remote add NixOS-config git@github.com:iansyd/NixOS-config.git
 ```
 
 7. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 

@@ -14,19 +14,26 @@
       ../../system                     # Standard modules - red from default.nix in this folder
     ];
 
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+/*
   # Use the systemd-boot EFI boot loader.
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-    #grub = {
-    #  enable = true;
-    #  devices = [ "nodev" ];
-    #  efiSupport = true;
-    #  useOSProber = true;
-    #};
+    #systemd-boot.enable = true;
+    #efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      devices = [ "nodev" ];
+      efiSupport = true;
+      useOSProber = true;
+    };
   };
-
+*/
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
     "nix-command" #--experimental-features 'nix-command flakes'
