@@ -262,17 +262,23 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 flatpak install com.microsoft.Edge
 ```
 b. Open Edge
-c. Set up sync to an existing account
+c. Set up sync to an existing (work) account
 
-9. Set up Onedriver. I did not sort out how to do this declaritavly (if it is possible) so instead... 
+9. Set up Onedriver for personal files (does not work for business).
+I did not sort out how to do this declaritavly (if it is possible) so instead... 
 a. create a folder ~/OneDrive
 b. Select menu item Utilities->Onedriver
 c. Follow the prompts
-d. That didnot work so 
 This is not a sync client. Instead of syncing files, onedriver performs an on-demand download of files when your computer attempts to use them.
 
+10. Add and configure KDE Krohnkite to enable tiling windows management
+a. System Settings -> Windows Management -> Kwin Scripts
+b. Get new -> search for Krohnkite
+c. Install
+d. Tick to activate
+
+
 Configure panels and widgets to suit
-Add and configure KDE Krohnkite to enable tiling windows managemetn
 To sort out - panel configurations etc in KDE
 
 ## Notes on a gotcha

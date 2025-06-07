@@ -11,6 +11,7 @@
     freecad
     klavaro
     libreoffice-qt6-fresh
+    marksman # for markup links
     meld
     #microsoft-edge # depreciated
     #teams
