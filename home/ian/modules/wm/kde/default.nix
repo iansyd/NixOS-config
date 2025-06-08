@@ -2,7 +2,9 @@
 
 let configDir = ./config;
 in
-{
+
+    imports = [ ./gtk.nix  ];
+	
     # Environment Variables
     home.sessionVariables = {
         BROWSER = "brave";
