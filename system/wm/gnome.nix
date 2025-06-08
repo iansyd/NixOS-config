@@ -8,28 +8,14 @@
               #./fonts.nix
             ];
 
-  environment.systemPackages = with pkgs; [
-    gnome-extension-manager
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.pop-shell
-    gnomeExtensions.appindicator 
-    gnomeExtensions.arcmenu
-    gnomeExtensions.dash-to-panel
-    gnome-system-monitor
-#    gnomeExtensions.arcmenu
-    gnome-tweaks
-    dconf
-    dconf-editor
-
-    # for app menu extension
-    gnome-menus
-    xdg-utils
-    xdg-user-dirs-gtk
-    gettext
-
-  ];
 
   programs.dconf.enable = true;
+
+
+  environment.systemPackages = with pkgs; [
+    gnome-extension-manager
+  ];
+
 
   # Enable the Gnome Desktop Environment.
   services = {

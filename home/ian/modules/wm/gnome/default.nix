@@ -6,6 +6,32 @@ in
 
   home.sessionVariables.GTK_THEME = "palenight";
 
+  home.packages = with pkgs; [
+    
+    # for app menu extension
+    gnome-menus
+    xdg-utils
+    xdg-user-dirs-gtk
+    gettext
+    
+    dconf
+    dconf-editor
+
+#    gnome-extension-manager
+
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.pop-shell
+    gnomeExtensions.appindicator 
+   # gnomeExtensions.arcmenu
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.dash-to-panel-menu
+    gnomeExtensions.just-perfection
+
+    gnome-system-monitor
+    gnome-tweaks
+
+  ];
+
   gtk = {
     enable = true;
 
@@ -59,8 +85,9 @@ in
           "dash-to-panel@jderose9.github.com"
           "appindicatorsupport@rgcjonas.gmail.com"
           "blur-my-shell@aunetx"
+	  "just-perfection@jrahmatzadeh"
+          "just-perfection-desktop@just-perfection" 
         ];
-        
         disabled-extensions = [
        	  "pop-shell@system76.com"
         ];
@@ -101,6 +128,10 @@ in
 	"global-border-radius" = 5;
       };
 
+      "org/gnome/shell/extensions/just-perfection" = {
+        "support-notifier-showed-version" = 34;
+	"just-perfection/support-notifier-type" = 0;
+      };
 /*
       "arcmenu" = {
         #"search-entry-border-radius" = ( true,  25 );
