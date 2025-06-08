@@ -15,6 +15,7 @@
     gnomeExtensions.appindicator 
     gnomeExtensions.arcmenu
     gnomeExtensions.dash-to-panel
+    gnome-system-monitor
 #    gnomeExtensions.arcmenu
     gnome-tweaks
     dconf
