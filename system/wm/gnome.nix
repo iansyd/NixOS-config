@@ -12,9 +12,8 @@
   programs.dconf.enable = true;
 
 
-  environment.systemPackages = with pkgs; [
-    gnome-extension-manager
-  ];
+  #environment.systemPackages = with pkgs; [
+  #];
 
 
   # Enable the Gnome Desktop Environment.
