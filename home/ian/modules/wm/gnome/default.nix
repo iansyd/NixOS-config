@@ -111,11 +111,11 @@ in
       "org/gnome/shell/extensions/dash-to-panel" = {
         "prefs-opened" = false;
         "primary-monitor" = "HPN-CN471407HK";
-        "panel-anchors" = "{\"CMN-0x00000000\":\"MIDDLE\" , \"HPN-CN471407HK\":\"MIDDLE\"}";
+        "panel-anchors" = "{\"CMN-0x00000000\":\"MIDDLE\" , \"HPN-CN471407HK\":\"MIDDLE\", \"LGD-0x00000000\":\"MIDDLE\"}";
         "panel-element-positions" = "{}";
-	"panel-lengths" = "{\"CMN-0x00000000\":-1 , \"HPN-CN471407HK\":-1 }";
+	"panel-lengths" = "{\"CMN-0x00000000\":-1 , \"HPN-CN471407HK\":-1, \"LGD-0x00000000\":-1 }";
         "panel-positions" = "{}";
-        "panel-sizes" = "{\"CMN-0x00000000\":41 , \"HPN-CN471407HK\":41 }";
+        "panel-sizes" = "{\"CMN-0x00000000\":41 , \"HPN-CN471407HK\":41, \"LGD-0x00000000\":41 }";
         "extension-version" = 68;
 	"focus-highlight-dominant" = true;
 	"dot-color-override" = false;
