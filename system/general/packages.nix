@@ -18,6 +18,7 @@
 
     dysk # a better df -H
     efibootmgr
+    flatpak
     gparted
     mc
     neofetch
