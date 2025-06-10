@@ -15,8 +15,8 @@
         dotfilesDir = "/home/ian/dotfiles"; # absolute path of the local repo
         theme = "io";                     # selcted theme from my themes directory (./themes/)
         # Selected window manager or desktop environment;
-        # must select one in both ./user/wm/ and ./system/wm/
-        wm = "gnome";
+        # must in both ./user/wm/ and ./system/wm/
+        wm = "kde";
         font = "Intel One Mono"; # Selected font
         fontPkg = pkgs.intel-one-mono; # Font package
         #editor = "nvim"; #"neovide"; # Default editor;

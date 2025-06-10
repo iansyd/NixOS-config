@@ -2,8 +2,10 @@
 
 let configDir = ./config;
 in
-
-    imports = [ ./gtk.nix  ];
+{
+    imports = [ 
+      ./gtk.nix  
+    ];
 	
     # Environment Variables
     home.sessionVariables = {
