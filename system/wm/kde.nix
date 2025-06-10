@@ -13,7 +13,7 @@
     kdePackages.konqueror
     kdePackages.kate
   ];
-
+  
   # Enable the KDE Plasma Desktop Environment.
   services = {
     xserver = {
@@ -37,4 +37,7 @@
       };
     };
   };
+  
+  programs.kdeconnect.enable = true;
+
 }

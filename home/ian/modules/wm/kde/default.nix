@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 let configDir = ./config;
 in
@@ -6,6 +6,19 @@ in
     imports = [ 
       ./gtk.nix  
     ];
+
+    home.packages = with pkgs; [
+
+    # for backgrounds
+    swaybg
+    waytrogen
+
+    polybarFull
+
+  ];
+
+
+
 	
     # Environment Variables
     home.sessionVariables = {
