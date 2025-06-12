@@ -9,15 +9,18 @@ in
 
     home.packages = with pkgs; [
 
-    # for backgrounds
-    swaybg
-    waytrogen
+      # for backgrounds
+      #swaybg
+      #waytrogen
 
-    polybarFull
+      # menu
+      #polybarFull
+      #or
+      #waybar
 
-  ];
+    ];
 
-
+    programs.waybar.enable = true;
 
 	
     # Environment Variables

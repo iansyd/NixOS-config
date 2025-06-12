@@ -13,7 +13,8 @@ in
     gnome-tweaks
     dconf
     dconf-editor
-    
+    nerd-fonts.m+
+
     # for app menu extension
     gnome-menus
     xdg-utils
