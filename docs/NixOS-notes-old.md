@@ -159,11 +159,15 @@ Reinstalling from Scratch using github configuration
 Based on video at https://www.youtube.com/watch?v=20BN4gqHwaQ&t=121s
 
 1. Create an SSH key on your PC
-$ ssh-keygen -t rsa
+```
+ssh-keygen -t rsa
+```
 (I used a blank passphrase)
 This generates a private in ~/.ssh/id_rsa & a public key in ~/.ssh/id_rsa.pub
 
 2. Copy and paste your public ssh key into github...
+login to git
+Create an SSH key. On github...
 a. In the upper-right corner of any page on GitHub, click your profile photo, then click Settings
 b. In the "Access" section of the sidebar, click "SSH and GPG keys"
 c. Click "New SSH key" or "Add SSH key"
@@ -175,10 +179,10 @@ f. Click on "Add SSH key"
 3. In a terminal...
 a. Temporarily install git using nix-shell then move to the home directory i.e.
 ```
-> nix-shell -p git
-> cd ~
-> git config --global user.email "iansyd@gmail.com"
-> git config --global user.name "IanS"
+nix-shell -p git
+cd ~
+git config --global user.email "iansyd@gmail.com"
+git config --global user.name "IanS"
 ```
 
 4. Clone the git repo
@@ -188,16 +192,21 @@ c. Click on SSH.
 d. Copy the path to the repo (something like git@github.com:iansyd/NixOS-config.git) to the clipboard.
 e. In the terminal opened at step 3. call git clone using the repo path, then rename it as dotfiles e.g.
 ```
+<<<<<<< HEAD
 > git clone git@github.com:iansyd/NixOS-config.git
 > mv NixOS-config dotfiles
+=======
+git clone git@github.com:iansyd/NixOS-config.git
+mv NixOS-config dotfiles
+>>>>>>> 90b18a4a1573962d1aa67b792e892fafaba4a3f8
 ```
 f. When prompted type yes to accept the connection to github
 g. Once it has been cloned then rename the cloned folder to dotfiles
 
 5. Now change channel, then rebuild
 ```
-> nix-channel --add https://nixos.org/channels/nixos-unstable
-> nix-channel --update
+nix-channel --add https://nixos.org/channels/nixos-unstable
+nix-channel --update
 ```
 
 6. Update the dotfile configuration files for this hardware
@@ -228,6 +237,14 @@ g. Rebuild
 ```
 sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
 home-manager switch --flake ~/dotfiles
+<<<<<<< HEAD
+=======
+```
+g.. Update git
+```
+> git add .
+> git commit -m "some relevant comment for the changes made"
+>>>>>>> 90b18a4a1573962d1aa67b792e892fafaba4a3f8
 ```
 
 7. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 
