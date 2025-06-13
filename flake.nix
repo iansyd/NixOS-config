@@ -41,7 +41,21 @@
 
        nixosConfigurations = {
 
-         dellLaptop = lib.nixosSystem {
+         hpMiniG9 = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ././hosts/hpMiniG9
+            nix-index-database.nixosModules.nix-index
+            # optional to also wrap and install comma
+            { programs.nix-index-database.comma.enable = true; }
+          ];
+          specialArgs = {
+            inherit userSettings;
+            inherit inputs;
+          };
+        };
+
+        dellLaptop = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ././hosts/dellLaptop
