@@ -128,28 +128,7 @@ $ sed -i 's/file:\/\/\/nix\/store\/[^\/]*\/share\/applications\//applications:/g
   ~/.config/plasma-org.kde.plasma.desktop-appletsrc \
   && systemctl restart --user plasma-plasmashell
 
-
-Reinstaling from Scratch
-========================
-
-Change channel, then rebuild
-nix-channel --add https://nixos.org/channels/nixos-unstable
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-nix-channel --update
-sudo nixos-rebuild switch
-
-add to /etc/nixos/configuration.nix:
-nix.settings.experimental-features = [
-  "nix-command"
-  "flakes"
-];
-
-Then magically get the dotfiles directory (see later)
-
-Replace/update the hardware-configuration.nix file in the dotfiles folder with the machine generated one
-in /etc/nixos
-
-
+  
 Onedrive
 ========
 Method descrive in https://nixos.wiki/wiki/OneDrive
@@ -180,11 +159,15 @@ Reinstalling from Scratch using github configuration
 Based on video at https://www.youtube.com/watch?v=20BN4gqHwaQ&t=121s
 
 1. Create an SSH key on your PC
-$ ssh-keygen -t rsa
+```
+ssh-keygen -t rsa
+```
 (I used a blank passphrase)
 This generates a private in ~/.ssh/id_rsa & a public key in ~/.ssh/id_rsa.pub
 
 2. Copy and paste your public ssh key into github...
+login to git
+Create an SSH key. On github...
 a. In the upper-right corner of any page on GitHub, click your profile photo, then click Settings
 b. In the "Access" section of the sidebar, click "SSH and GPG keys"
 c. Click "New SSH key" or "Add SSH key"
@@ -196,10 +179,10 @@ f. Click on "Add SSH key"
 3. In a terminal...
 a. Temporarily install git using nix-shell then move to the home directory i.e.
 ```
-> nix-shell -p git
-> cd ~
-> git config --global user.email "iansyd@gmail.com"
-> git config --global user.name "IanS"
+nix-shell -p git
+cd ~
+git config --global user.email "iansyd@gmail.com"
+git config --global user.name "IanS"
 ```
 
 4. Clone the git repo
@@ -207,17 +190,18 @@ a. On GitHub, navigate to the main page of the repository.
 b. Above the list of files, click Code.
 c. Click on SSH.
 d. Copy the path to the repo (something like git@github.com:iansyd/NixOS-config.git) to the clipboard.
-e. In the terminal opened at step 3. call git clone using the repo path from step e. above e.g.
+e. In the terminal opened at step 3. call git clone using the repo path, then rename it as dotfiles e.g.
 ```
-> git clone git@github.com:iansyd/NixOS-config.git
+git clone git@github.com:iansyd/NixOS-config.git
+mv NixOS-config dotfiles
 ```
 f. When prompted type yes to accept the connection to github
 g. Once it has been cloned then rename the cloned folder to dotfiles
 
 5. Now change channel, then rebuild
 ```
-> nix-channel --add https://nixos.org/channels/nixos-unstable
-> nix-channel --update
+nix-channel --add https://nixos.org/channels/nixos-unstable
+nix-channel --update
 ```
 
 6. Update the dotfile configuration files for this hardware
@@ -240,9 +224,9 @@ git remote add NixOS-config git@github.com:iansyd/NixOS-config.git
 f. Rebuild
 ```
 sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
-> home-manager switch --flake ~/dotfiles
+home-manager switch --flake ~/dotfiles
 ```
-g.. Uupdate git
+g.. Update git
 ```
 > git add .
 > git commit -m "some relevant comment for the changes made"

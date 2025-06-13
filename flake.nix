@@ -9,7 +9,7 @@
       # ----- USER SETTINGS ----- #
       userSettings = rec {
         # username also needs to be be explicity stated in the definition of homeConfigurations
-        #username = "ian";                 # username.
+        username = "ian";                 # username.
         name = "Ian";                     # name/identifier
         email = "iansyd@gmail.com";       # email (used for certain configurations)
         dotfilesDir = "/home/ian/dotfiles"; # absolute path of the local repo
