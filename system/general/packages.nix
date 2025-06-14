@@ -15,7 +15,6 @@
 
     # utilities
     bat # an alternative to cat
-
     dysk # a better df -H
     efibootmgr
     flatpak

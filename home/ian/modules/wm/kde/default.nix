@@ -9,6 +9,8 @@ in
 
     home.packages = with pkgs; [
 
+      kdePackages.plasma-browser-integration
+
       # for backgrounds
       #swaybg
       #waytrogen
