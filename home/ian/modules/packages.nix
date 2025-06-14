@@ -34,6 +34,7 @@
     catppuccin-gtk
     papirus-folders
     desktop-file-utils
+    hardinfo2
 
     #for rust
     gcc # needed for rustup
