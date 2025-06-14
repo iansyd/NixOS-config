@@ -21,6 +21,7 @@
     flatpak
     gnugrep
     gparted
+    hardinfo2
     mc
     neofetch
     nethogs # A small 'net top' tool that groups traffic by process to show what is using bandwith
