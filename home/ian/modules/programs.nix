@@ -20,27 +20,8 @@
       #enableBashIntegration = true;
     };
 
-/*  # git
-    git = {
-      enable = true;
-      userName = "ian";
-      userEmail = "iansyd@gmail.com";
-      ignores = [
-        "#ignore temp files"
-        "*~""
-        "*.swp"
-        "tempfile"
-        "*.kate-swp"
-        "# Ignore build outputs from performing a nix-build or `nix build` command"
-        "result"
-        "result-*"
-        "# Ignore automatically generated direnv output"
-        ".direnv"
-       ];
-    };
-*/
-
-    #Inst"all Neovim and the default editor
+    
+    #Install Neovim as the default editor
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -51,5 +32,6 @@
         ''
       ;
     };
+
   };
 }

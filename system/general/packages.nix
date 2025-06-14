@@ -6,6 +6,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
+    brave
 
     hello # tiny hello world
     cowsay # wierd little text typer for terminal
@@ -37,10 +38,7 @@
     unimatrix
 
     #Editor
-    vim # An editor to edit configuration.nix
-    #neovide
-
-
+    neovim # An editor to edit configuration.nix
 
     # git related packages
     git
