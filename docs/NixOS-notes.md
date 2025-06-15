@@ -226,7 +226,7 @@ cd ~/dotfiles
 git remote remove origin
 git remote add NixOS-config git@github.com:iansyd/NixOS-config.git
 ```
-f.. Uupdate git
+f.. Update git
 ```
 git add .
 git commit -m "some relevant comment for the changes made"
@@ -237,14 +237,11 @@ g. Rebuild
 ```
 sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
 home-manager switch --flake ~/dotfiles
-<<<<<<< HEAD
-=======
 ```
 g.. Update git
 ```
 > git add .
 > git commit -m "some relevant comment for the changes made"
->>>>>>> 90b18a4a1573962d1aa67b792e892fafaba4a3f8
 ```
 
 7. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 
@@ -260,8 +257,12 @@ a. Install microsoft edge from the flatpak repo
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install com.microsoft.Edge
 ```
-b. Open Edge
-c. Set up sync to an existing (work) account
+b. log out then back in again or rebuild the menu using
+```
+kbuildsycoca6
+```
+c. Open Edge
+d. Set up sync to an existing (work) account
 
 9. Set up Onedriver for personal files (does not work for business).
 I did not sort out how to do this declaritavly (if it is possible) so instead... 
