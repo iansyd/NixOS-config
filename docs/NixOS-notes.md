@@ -180,7 +180,6 @@ f. Click on "Add SSH key"
 a. Temporarily install git using nix-shell then move to the home directory i.e.
 ```
 nix-shell -p git
-cd ~
 git config --global user.email "iansyd@gmail.com"
 git config --global user.name "IanS"
 ```
@@ -192,35 +191,44 @@ c. Click on SSH.
 d. Copy the path to the repo (something like git@github.com:iansyd/NixOS-config.git) to the clipboard.
 e. In the terminal opened at step 3. call git clone using the repo path, then rename it as dotfiles e.g.
 ```
-<<<<<<< HEAD
-> git clone git@github.com:iansyd/NixOS-config.git
-> mv NixOS-config dotfiles
-=======
 git clone git@github.com:iansyd/NixOS-config.git
 mv NixOS-config dotfiles
->>>>>>> 90b18a4a1573962d1aa67b792e892fafaba4a3f8
+git clone git@github.com:iansyd/NixOS-config.git
+mv NixOS-config dotfiles
 ```
 f. When prompted type yes to accept the connection to github
 g. Once it has been cloned then rename the cloned folder to dotfiles
 
-5. Now change channel, then rebuild
+5. Change channel
 ```
 nix-channel --add https://nixos.org/channels/nixos-unstable
 nix-channel --update
 ```
 
-6. Update the dotfile configuration files for this hardware
-a. Replace/update the hardware-configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
-b. Check the configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
-c. add to /etc/nixos/configuration.nix:
+
+6. Update /etc/nixos/configuration.nix and rebuild
+a. Add flakes to the file:
 ```
 nix.settings.experimental-features = [
   "nix-command"
   "flakes"
 ];
 ```
-d. Update the hostname and any other relevant info in ~/dotfiles/flake.nix - including the host name in the nixosConfigurations expression
-e. Correct the git repository name
+b. rebuild
+```
+sudo nixos-rebuild switch
+```
+
+7. Update the dotfile configuration files for this hardware
+a. Replace/update the hardware-configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
+b. Update the hostname and any other relevant info in ~/dotfiles/flake.nix - including the host name in the nixosConfigurations expression
+c. Check, compare, and update the configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
+   It may be worth opening the editor from a terminal after temporarily installing git:
+```
+nix-shell -p git
+kate /etc/noxos/configuration.nix ~/dotfiles/hosts/<hostname>/default.nix
+```
+d. Correct the git repository name
 ```
 cd ~/dotfiles
 git remote remove origin
@@ -235,10 +243,10 @@ git push NixOS-config main
 
 g. Rebuild
 ```
-sudo nixos-rebuild switch --flake ~/dotfiles#jupiterH470-nvme
+sudo nixos-rebuild switch --flake ~/dotfiles#<hostname>
 home-manager switch --flake ~/dotfiles
 ```
-g.. Update git
+h.. Update git
 ```
 > git add .
 > git commit -m "some relevant comment for the changes made"
