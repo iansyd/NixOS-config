@@ -14,6 +14,7 @@
       ../../system                     # Standard modules - red from default.nix in this folder
     ];
 
+/*
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     #systemd-boot.enable = true;
@@ -25,6 +26,25 @@
       useOSProber = true;
     };
   };
+*/
+
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+  networking = {
+    hostName = "dellLaptop";
+
+    # Pick only one of the below networking options.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+    enableIPv6 = false;
+    #firewall.enable = false;
+    useDHCP = lib.mkDefault true;
+  };
+
 
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
@@ -48,17 +68,7 @@
   # set up flatpak
   services.flatpak.enable = true;
 
-  networking = {
-	hostName = "dellLaptop";
 
-	# Pick only one of the below networking options.
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-	enableIPv6 = false;
-	#firewall.enable = false;
-	useDHCP = lib.mkDefault true;
-  };
 
   # Set your time zone.
   time = {
@@ -159,5 +169,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # DANGER Did you read the comment?
+  system.stateVersion = "25.05"; # DANGER Did you read the comment?
   }

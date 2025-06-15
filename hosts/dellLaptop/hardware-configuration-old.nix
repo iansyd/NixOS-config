@@ -14,12 +14,18 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ff3e7754-8b10-480d-8cab-cbfc43b91666";
+    { device = "/dev/disk/by-uuid/37d062ed-28f8-4c4a-922c-2774e3fc52a6";
       fsType = "ext4";
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/DA36-241E";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/d54c74a1-a350-44ec-bab4-0fc6c72b80d6"; }
+    [ { device = "/dev/disk/by-uuid/7701a924-4f23-4eea-a282-1f81dd39bf01"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -31,4 +37,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.logitech.wireless.enable = true;
 }
