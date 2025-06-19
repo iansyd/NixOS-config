@@ -14,12 +14,12 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ff3e7754-8b10-480d-8cab-cbfc43b91666";
+    { device = "/dev/disk/by-uuid/6c2861eb-ad1a-4bdc-8c44-f516d1d9ed8a";
       fsType = "ext4";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/d54c74a1-a350-44ec-bab4-0fc6c72b80d6"; }
+    [ { device = "/dev/disk/by-uuid/74afad00-e336-43e3-86bb-473c41c58bd8"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
