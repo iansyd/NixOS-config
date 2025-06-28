@@ -16,31 +16,28 @@
         theme = "io";                     # selcted theme from my themes directory (./themes/)
         # Selected window manager or desktop environment;
         # must in both ./user/wm/ and ./system/wm/
-        wm = "kde";
+        #wm = "kde";
         font = "Intel One Mono"; # Selected font
         fontPkg = pkgs.intel-one-mono; # Font package
         #editor = "nvim"; #"neovide"; # Default editor;
       };
 
       # ----- THE REST ----- #
-      pkgs = import inputs.nixpkgs-unstable {
+      pkgs = import inputs.nixpkgs {
         system = "x86_64-linux";
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
         };
       };
-      lib = inputs.nixpkgs-unstable.lib;
-      home-manager = inputs.home-manager-unstable;
-      nix-index-database = inputs.nix-index-database-unstable;
-      plasma-manager = inputs.plasma-manager-unstable;
+      lib = inputs.nixpkgs.lib;
+      home-manager = inputs.home-manager;
+      nix-index-database = inputs.nix-index-database;
+      plasma-manager = inputs.plasma-manager;
 
-    in
+    in    {
 
-    {
-
-       nixosConfigurations = {
-
+    nixosConfigurations = {
          hpMiniG9 = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -82,7 +79,6 @@
             inherit inputs;
           };
         };
-
 
         dellMiniLaptop = lib.nixosSystem {
           system = "x86_64-linux";
@@ -134,7 +130,7 @@
               inherit pkgs;
               modules = [
                 plasma-manager.homeManagerModules.plasma-manager
-                ././home/ian/home.nix
+                ././home
                 nix-index-database.hmModules.nix-index
                 # optional to also wrap and install comma
                 { programs.nix-index-database.comma.enable = true; }
@@ -150,27 +146,24 @@
 
 
   inputs = {
-
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    home-manager-unstable = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-index-database-unstable = {
+    nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # blocklist used in blocklist.nix
     blocklist-hosts = {
       url = "github:StevenBlack/hosts";
       flake = false;
     };
-    plasma-manager-unstable = {
+    plasma-manager = {
       url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.home-manager.follows = "home-manager-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
-    stylix.url = "github:danth/stylix";
   };
 }
