@@ -4,22 +4,16 @@
 # To rebuild:
 # $ sudo nixos-rebuild switch
 
-{ config, lib, pkgs, userSettings, inputs, ... }:
+{ lib, pkgs,  ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #./other-file-systems.nix        # file systems specific to this host
-      ../../system                     # Standard modules - red from default.nix in this folder
+    [
+      ./hardware-configuration.nix # Include the results of the hardware scan.
+      #./other-file-systems.nix         # file systems specific to this host
+      ./users.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 /*
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -34,6 +28,29 @@
     };
   };
 */
+
+  # Bootloader.
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
+
+  # networking
+  networking = {
+    hostName = "dellE7440";
+
+    # Pick only one of the below networking options.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+    enableIPv6 = false;
+    #firewall.enable = false;
+    useDHCP = lib.mkDefault true;
+  };
+
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
     "nix-command" #--experimental-features 'nix-command flakes'
@@ -51,22 +68,10 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # set up flatpak
   services.flatpak.enable = true;
-
-  networking = {
-	hostName = "dellE7440";
-
-	# Pick only one of the below networking options.
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-	enableIPv6 = false;
-	#firewall.enable = false;
-	useDHCP = lib.mkDefault true;
-  };
 
   # Set your time zone.
   time = {
@@ -88,7 +93,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -145,6 +149,11 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -152,5 +161,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

@@ -1,17 +1,17 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
 
   programs = {
 
     # Let Home Manager install and manage itself.
-    home-manager.enable = true;
+    #home-manager.enable = true;
 
     # enable github cli
     gh.enable = true;
 
     btop.enable = true;
 
-    # Trying to get command-not-found to work
+/*    # Trying to get command-not-found to work
     command-not-found.enable = false;
     nix-index-database.comma.enable = true;
     nix-index = {
@@ -19,7 +19,7 @@
       enableFishIntegration = true;
       #enableBashIntegration = true;
     };
-
+*/
 
     #Install Neovim as the default editor
     neovim = {
@@ -72,7 +72,7 @@
     #for rust
     gcc # needed for rustup
     rustup
-    vscode-with-extensions
+    #vscode-with-extensions
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

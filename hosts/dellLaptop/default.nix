@@ -1,17 +1,15 @@
 ## Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-# To rebuild:
-# $ sudo nixos-rebuild switch
 
-{ config, lib, pkgs, userSettings, inputs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #./other-file-systems.nix        # file systems specific to this host
-      ../../system                     # Standard modules - red from default.nix in this folder
+    [
+      ./hardware-configuration.nix # Include the results of the hardware scan.
+      #./other-file-systems.nix         # file systems specific to this host
+      ./users.nix
     ];
 
 /*
@@ -29,10 +27,18 @@
 */
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot = {
+    #kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      grub = {
+        enable = true;
+        device = "/dev/sda";
+        useOSProber = true;
+      };
+    };
+  };
 
+  # networking
   networking = {
     hostName = "dellLaptop";
 
@@ -44,7 +50,6 @@
     #firewall.enable = false;
     useDHCP = lib.mkDefault true;
   };
-
 
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
@@ -68,8 +73,6 @@
   # set up flatpak
   services.flatpak.enable = true;
 
-
-
   # Set your time zone.
   time = {
     timeZone = "Pacific/Auckland"; # time zone
@@ -91,13 +94,12 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound.
   # services.pulseaudio.enable = true;
@@ -152,22 +154,11 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-  # to actually do that.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # DANGER Did you read the comment?
   }
