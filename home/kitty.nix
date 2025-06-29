@@ -7,6 +7,7 @@
       shellIntegration = {
         #enableBashIntegration = true;
         enableFishIntegration = true;
+        enableZshIntegration = true;
       };
       font = {
         package = pkgs.nerd-fonts.jetbrains-mono; #pkgs.dejavu_fonts;

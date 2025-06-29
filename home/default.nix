@@ -16,5 +16,11 @@ nixpkgs = {
     ./kitty.nix
     ./git.nix
     ./fastfetch
+    ./zsh
+    ./bat.nix
+    ./btop.nix
+    ./emoji.nix
+    ./yazi
+    ./lazygit.nix
   ];
 }

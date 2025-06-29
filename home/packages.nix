@@ -9,8 +9,6 @@
     # enable github cli
     gh.enable = true;
 
-    btop.enable = true;
-
 /*    # Trying to get command-not-found to work
     command-not-found.enable = false;
     nix-index-database.comma.enable = true;
