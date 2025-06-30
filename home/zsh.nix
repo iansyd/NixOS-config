@@ -1,11 +1,9 @@
+{  host,  ... }:
 {
-  host,
-  ...
-}:
-{
-  imports = [
-    ./starship.nix
-  ];
+  #imports = [
+   # ./starship/starship.nix
+  #];
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
