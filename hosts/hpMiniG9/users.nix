@@ -62,6 +62,11 @@ in
       "networkmanager"
       "scanner"
       "wheel"
+      "input"
+      "dialout"
+      "video"
+      "render"
+      "qemu"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

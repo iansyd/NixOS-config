@@ -19,14 +19,15 @@
 
         # general
         ./automountUsb.nix
+        ./starship.nix
         ./bash.nix
         ./flatpak.nix
+        #./git.nix
         ./garbage.nix
         ./onedrive.nix
         ./packages.nix
         ./sound.nix
         ./time.nix
-        ./users.nix
 
         # And then the window manager
         ./kde.nix
