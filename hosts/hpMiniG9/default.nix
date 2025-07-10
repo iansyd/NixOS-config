@@ -5,16 +5,19 @@
 { config, lib, pkgs, ... }:
 
 {
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../system                     # Standard modules - read from default.nix in this folder
+      ./users.nix
+      #./../../system                     # Standard modules - read from default.nix in this folder
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  #>>>>> Custom
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
     "nix-command" #--experimental-features 'nix-command flakes'
@@ -28,12 +31,18 @@
   ];
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # set up flatpak
   services.flatpak.enable = true;
+  #>>>> End Custom
 
   networking.hostName = "hpMiniG9"; # Define your hostname.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -47,19 +56,23 @@
     hardwareClockInLocalTime = false;
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_NZ.UTF-8";
+    LC_IDENTIFICATION = "en_NZ.UTF-8";
+    LC_MEASUREMENT = "en_NZ.UTF-8";
+    LC_MONETARY = "en_NZ.UTF-8";
+    LC_NAME = "en_NZ.UTF-8";
+    LC_NUMERIC = "en_NZ.UTF-8";
+    LC_PAPER = "en_NZ.UTF-8";
+    LC_TELEPHONE = "en_NZ.UTF-8";
+    LC_TIME = "en_NZ.UTF-8";
+  };
 
   # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
   # Configure keymap in X11

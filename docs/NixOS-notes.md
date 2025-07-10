@@ -1,28 +1,35 @@
 NixOS Learnings
 ================
 
+## Temporary Installation
 
 Temporary Installation
 ----------------------
 
 To add a program for use in a shell - e.g. to add the cowsay and lolcat packages...
-$ nix-shell -p cowsay lolcat
+```
+nix-shell -p cowsay lolcat
+```
 
 Ctrl-D to exit the shell - and therefor no longer have access to the package.
 
 Or even quicker to run it once - load then run the package...
-$ nix-shell -p cowsay --run "cowsay Nix"
-
+```
+nix-shell -p cowsay --run "cowsay Nix"
+```
 
 Check what version of a program is installed
 --------------------------------------------
 
 To check that you have a packjage, and its version - e.g. to check for git
 Method 1:
-$ which git
+```
+which git
+```
 Method 2:
+```
 git --version
-
+```
 
 Basic/Original system configuration in /etc/nixos/
 --------------------------------------------------
@@ -30,44 +37,58 @@ Basic/Original system configuration in /etc/nixos/
 This section now superceeded. Use the flake version below
 
 Record System configuration in /etc/nixos/configuration.nix and edit it with:
-$ sudo vim /etc/nixos/configuration.nix
+```
+sudo vim /etc/nixos/configuration.nix
+```
 
 After modifying entries in /etc/nixos/configuration.nix update the system by runing the command:
-$ sudo nixos-rebuild switch
+```
+sudo nixos-rebuild switch
+```
 
 
 Managing Generations
 --------------------
 
-To show stored generations:
-$ nixos-rebuild list-generations
+Some examples:
+```
+# To show stored generations
+nixos-rebuild list-generations 
 
-To delete generations older than 30 days and any stored packages that are not linked to a remaining generation:
-$ nix-collect-garbage --delete-older-than 30d
+# To delete generations older than 30 days and any stored packages that are not linked to a remaining generation:
+nix-collect-garbage --delete-older-than 30d
 
-or to delete just stored packages not linked to remaining generations:
+# To delete just stored packages not linked to remaining generations:
 $ nix-collect-garbage
 
-and to delte other user-specific generations for different things (e.g. home-manager):
+# To delete other user-specific generations for different things (e.g. home-manager):
 $ nix-collect-garbage -d
+```
+dd
+
+
 
 Software Management using Flakes
 --------------------------------
 
 Set up is recorded in ~/.dotfiles
 
-edit configuration:
-$ sudo vim ~/.dotfiles/configuration.nix
+```
+# edit configuration:
+sudo vim ~/.dotfiles/configuration.nix
 
-update configuration:
-$ sudo nixos-rebuild switch --flake ~/.dotfiles
+# update configuration:
+sudo nixos-rebuild switch --flake ~/.dotfiles
 
-Update to latest software using a flake
-$ nix flake update --flake ~/.dotfiles
+# update to latest software using a flake
+nix flake update --flake ~/.dotfiles
 
-The above command only updates the flake. To update the system also use:
-$ sudo nixos-rebuild switch --flake .
+# The above command only updates the flake. To update the system also use:
+sudo nixos-rebuild switch --flake .
 
+# To give a generation a specific name
+NIXOS_LABEL="this is what I want it to be called" nixos-rebuild switch --flake .
+```
 
 HomeManager
 -----------
@@ -98,6 +119,7 @@ More complex scripts are normally saved as functions in the folder
 ~/.dotfiles/fish/functions
 and made live using home-manager with a new line for each aded function
 
+## Working with Nix files
 
 Working with Nix files
 ----------------------
@@ -158,23 +180,29 @@ Reinstalling from Scratch using github configuration
 ====================================================
 Based on video at https://www.youtube.com/watch?v=20BN4gqHwaQ&t=121s
 
-1. Create an SSH key on your PC
+1. Set the SSH key on your PC - either by copying from a prior installation, or 
+   creating a new one
+
+Option A)
+a, Create an SSH key on your PC
 ```
 ssh-keygen -t rsa
 ```
 (I used a blank passphrase)
 This generates a private in ~/.ssh/id_rsa & a public key in ~/.ssh/id_rsa.pub
-
-2. Copy and paste your public ssh key into github...
 login to git
 Create an SSH key. On github...
-a. In the upper-right corner of any page on GitHub, click your profile photo, then click Settings
-b. In the "Access" section of the sidebar, click "SSH and GPG keys"
-c. Click "New SSH key" or "Add SSH key"
-d. Give it a "Title" that explains how the key will be used
-e. Select the "key type" of Authentication Key
-e. Copy the key from the file ~/.ssh/????.pub (generated in step 1) into the "key" field.
-f. Click on "Add SSH key"
+b. In the upper-right corner of any page on GitHub, click your profile photo, then click Settings
+c. In the "Access" section of the sidebar, click "SSH and GPG keys"
+d. Click "New SSH key" or "Add SSH key"
+e. Give it a "Title" that explains how the key will be used
+f. Select the "key type" of Authentication Key
+g. Copy the key from the file ~/.ssh/????.pub (generated in step 1) into the "key" field.
+h. Click on "Add SSH key"
+
+or Option B)
+a) copy the file from/to ~/.ssh/id_rsa.pub  
+b) change the permissions of id_rsa to user only 
 
 3. In a terminal...
 a. Temporarily install git using nix-shell then move to the home directory i.e.
@@ -193,15 +221,13 @@ e. In the terminal opened at step 3. call git clone using the repo path, then re
 ```
 git clone git@github.com:iansyd/NixOS-config.git
 mv NixOS-config dotfiles
-git clone git@github.com:iansyd/NixOS-config.git
-mv NixOS-config dotfiles
 ```
 f. When prompted type yes to accept the connection to github
 g. Once it has been cloned then rename the cloned folder to dotfiles
 
 5. Change channel
 ```
-nix-channel --add https://nixos.org/channels/nixos-unstable
+nix-channel --add https://nixos.org/channels/nixos-25.05
 nix-channel --update
 ```
 
@@ -214,19 +240,26 @@ nix.settings.experimental-features = [
   "flakes"
 ];
 ```
-b. rebuild
+b. Rename the host, e.g.
 ```
-sudo nixos-rebuild switch
+networking.hostName = "hpMiniG9"; # Define your hostname.
+```
+c. rebuild
+```
+sudo nixos-rebuild --update switch
 ```
 
 7. Update the dotfile configuration files for this hardware
-a. Replace/update the hardware-configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
-b. Update the hostname and any other relevant info in ~/dotfiles/flake.nix - including the host name in the nixosConfigurations expression
-c. Check, compare, and update the configuration.nix file in the dotfiles folder with the machine generated one in /etc/nixos
+a. Replace/update the hardware-configuration.nix file in the dotfiles folder 
+   with the machine generated one in /etc/nixos
+b. Update the hostname and any other relevant info in ~/dotfiles/flake.nix
+   - including the host name in the nixosConfigurations expression
+c. Check, compare, and update the configuration.nix file in the dotfiles folder 
+   with the machine generated one in /etc/nixos
    It may be worth opening the editor from a terminal after temporarily installing git:
 ```
 nix-shell -p git
-kate /etc/noxos/configuration.nix ~/dotfiles/hosts/<hostname>/default.nix
+kate /etc/nixos/configuration.nix ~/dotfiles/hosts/<hostname>/default.nix
 ```
 d. Correct the git repository name
 ```
@@ -234,22 +267,16 @@ cd ~/dotfiles
 git remote remove origin
 git remote add NixOS-config git@github.com:iansyd/NixOS-config.git
 ```
-f.. Update git
+f.. Update git & rebuild
 ```
 git add .
-git commit -m "some relevant comment for the changes made"
-git push NixOS-config main
-```
-
-g. Rebuild
-```
-sudo nixos-rebuild switch --flake ~/dotfiles#<hostname>
+sudo nixos-rebuild switch --flake ~/dotfiles#<hostnamne>
 home-manager switch --flake ~/dotfiles
 ```
 h.. Update git
 ```
-> git add .
-> git commit -m "some relevant comment for the changes made"
+git commit -m "some relevant comment for the changes made"
+git push NixOS-config main
 ```
 
 7. Set up Brave Browser. I did not sort out how to do this declaritavly (if it is possible) so instead... 
@@ -260,10 +287,10 @@ d. Select the hambuger menu on top left, then Sync
 b. Set up sync to an existing account
 
 8. Set up Edge Browser. I did not sort out how to do this declaritavly (if it is possible) so instead...
-a. Install microsoft edge from the flatpak repo
+a. Install microsoft edge and teams from the flatpak repo
 ```
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install com.microsoft.Edge
+flatpak install com.microsoft.Edge com.github.IsmaelMartinez.teams_for_linux
 ```
 b. log out then back in again or rebuild the menu using
 ```
@@ -307,6 +334,11 @@ To Do
 
 Revise dotfiles for different hosts
 
+Sort out warning mesage related to nixpkgs.config 
+```
+ian profile: You have set either `nixpkgs.config` or `nixpkgs.overlays` while using `home-manager.useGlobalPkgs`.
+This will soon not be possible. Please remove all `nixpkgs` options when using `home-manager.useGlobalPkgs`.
+```
 
 
 
