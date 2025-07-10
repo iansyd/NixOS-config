@@ -78,21 +78,22 @@
             inherit (import ./variables.nix) host username;
           };
         };
-/*
+
         dellLaptop = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ././hosts/dellLaptop
-            nix-index-database.nixosModules.nix-index
+            inputs.nix-index-database.nixosModules.nix-index
             # optional to also wrap and install comma
             { programs.nix-index-database.comma.enable = true; }
           ];
           specialArgs = {
             inherit userSettings;
             inherit inputs;
+            inherit (import ./variables.nix) host username;
           };
         };
-
+/*
         dellE7440 = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
