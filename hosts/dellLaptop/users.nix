@@ -3,6 +3,7 @@
   inputs,
   host,
   username,
+  email,
   dotfilesDir,
   ...
 }:
@@ -21,6 +22,7 @@
         inputs
         username
         host
+        email
         dotfilesDir
         ;
     };
