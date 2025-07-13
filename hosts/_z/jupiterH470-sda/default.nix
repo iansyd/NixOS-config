@@ -29,20 +29,20 @@
   };
 
   networking = {
-	hostName = "jupiterH470-sda";
-	networkmanager.enable = true;
-	enableIPv6 = false;
-	#firewall.enable = false;
-	useDHCP = lib.mkDefault true;
-	# networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-	# networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
+    hostName = "jupiterH470-sda";
+    networkmanager.enable = true;
+    enableIPv6 = false;
+    #firewall.enable = false;
+    useDHCP = lib.mkDefault true;
+    # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+    # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
   };
 
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix    # Standard auto-config file
-    ./other-file-systems.nix        # file systems specific to this host
-    ../../system                    # Standard modules - red from default.nix in this folder
+    ./hardware-configuration.nix # Standard auto-config file
+    ./other-file-systems.nix # file systems specific to this host
+    ../../system # Standard modules - red from default.nix in this folder
   ];
 
   boot.loader.grub = {
@@ -54,19 +54,17 @@
   # Used instead of doas
   #security.sudo.enable = true;
 
-    # Enable touchpad support (enabled default in most desktopManager).
+  # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # enable service for onedrive
   #services.onedrive.package = pkgs.onedriver;
   #services.onedrive.enable = true;
 
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on

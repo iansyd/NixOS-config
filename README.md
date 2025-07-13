@@ -1,2 +1,2 @@
 # Nixos-config2
-Second attempt at Nixos dotfiles 
+Third attempt at kde based Nixos dotfiles 

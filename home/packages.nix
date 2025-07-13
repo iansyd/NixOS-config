@@ -21,21 +21,18 @@
       enableBashIntegration = true;
     };
 
-
     # Install Neovim as the default editor
     neovim = {
       enable = true;
       defaultEditor = true;
-      extraConfig =
-        ''
+      extraConfig = ''
         set number
         set ruler
-        ''
-      ;
+      '';
     };
   };
 
- # The home.packages option allows you to install Nix packages into your
+  # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
 
@@ -47,8 +44,6 @@
     libreoffice-qt6-fresh
     marksman # for markup links in kate
     meld
-    #microsoft-edge # depreciated
-    #teams
     nil # analysis assistant for writing in Nix
     #notepadqq
     #onedriver
@@ -63,7 +58,6 @@
 
     # Utils
     viewnior
-    hyprshot
     catppuccin-cursors.macchiatoBlue
     catppuccin-gtk
     papirus-folders

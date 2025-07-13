@@ -1,10 +1,18 @@
-{ pkgs, userSettings, ... }:
+{
+  username,
+  email,
+  dotfilesDir,
+  ...
+}:
+#let
+#  inherit (import ../variables.nix) username email dotfilesDir;
+#in
 {
   # git
   programs.git = {
     enable = true;
-    userName = userSettings.username;
-    userEmail = userSettings.email;
+    userName = username;
+    userEmail = email;
     ignores = [
       "#ignore temp files"
       "*~"
@@ -21,7 +29,7 @@
     ];
     extraConfig = {
       init.defaultBranch = "main";
-      safe.Directory = userSettings.dotfilesDir;
+      safe.Directory = dotfilesDir;
     };
   };
 }

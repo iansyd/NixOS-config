@@ -7,7 +7,6 @@
     enableFishIntegration = true;
     git = true;
 
-
     extraOptions = [
       "--group-directories-first"
       "--no-quotes"

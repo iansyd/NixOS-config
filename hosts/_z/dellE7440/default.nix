@@ -4,15 +4,22 @@
 # To rebuild:
 # $ sudo nixos-rebuild switch
 
-{ config, lib, pkgs, userSettings, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  userSettings,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #./other-file-systems.nix        # file systems specific to this host
-      ../../system                     # Standard modules - red from default.nix in this folder
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    #./other-file-systems.nix        # file systems specific to this host
+    ../../system # Standard modules - red from default.nix in this folder
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -20,23 +27,23 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-/*
-  # Use the systemd-boot EFI boot loader.
-  boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    #systemd-boot.enable = true;
-    #efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      devices = [ "nodev" ];
-      efiSupport = true;
-      useOSProber = true;
+  /*
+    # Use the systemd-boot EFI boot loader.
+    boot = {
+      kernelPackages = pkgs.linuxPackages_latest;
+      #systemd-boot.enable = true;
+      #efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        devices = [ "nodev" ];
+        efiSupport = true;
+        useOSProber = true;
+      };
     };
-  };
-*/
+  */
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
-    "nix-command" #--experimental-features 'nix-command flakes'
+    "nix-command" # --experimental-features 'nix-command flakes'
     "flakes"
   ];
 
@@ -57,15 +64,15 @@
   services.flatpak.enable = true;
 
   networking = {
-	hostName = "dellE7440";
+    hostName = "dellE7440";
 
-	# Pick only one of the below networking options.
+    # Pick only one of the below networking options.
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-	enableIPv6 = false;
-	#firewall.enable = false;
-	useDHCP = lib.mkDefault true;
+    enableIPv6 = false;
+    #firewall.enable = false;
+    useDHCP = lib.mkDefault true;
   };
 
   # Set your time zone.
@@ -88,7 +95,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

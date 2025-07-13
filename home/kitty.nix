@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs = {
@@ -10,13 +10,13 @@
         enableZshIntegration = true;
       };
       font = {
-        package = pkgs.nerd-fonts.jetbrains-mono; #pkgs.dejavu_fonts;
-        name = "JetBrainsMonoNerdFontMono"; #The family name of the font within the package.
+        package = pkgs.nerd-fonts.jetbrains-mono; # pkgs.dejavu_fonts;
+        name = "JetBrainsMonoNerdFontMono"; # The family name of the font within the package.
         size = 10;
       };
 
       settings = {
-#         #modify_font = "cell_width 90%";
+        #         #modify_font = "cell_width 90%";
 
         #: The shell program to execute. The default value of . means to use
         #: the value of of the SHELL environment variable or if unset,
@@ -86,7 +86,7 @@
 
         #: The color for the border of the active window. Set this to none to
         #: not draw borders around the active window.
-        active_border_color  = "#B7BDF8";
+        active_border_color = "#B7BDF8";
 
         #: The color for the border of inactive windows.
         inactive_border_color = "#6E738D";
@@ -132,7 +132,6 @@
         #: will only work if dynamic_background_opacity was enabled in the
         #: original config.
         background_opacity = "1";
-
 
         #: Set to a positive value to enable background blur (blurring of the
         #: visuals behind a transparent window) on platforms that support it.
@@ -640,8 +639,6 @@
 #: typing text. Disabled by default on macOS as getting it to work
 #: robustly with the ever-changing sea of bugs that is Cocoa is too
 #: much effort.
-
-
 
 #url_color #0087bd
 # url_style curly
@@ -2555,7 +2552,6 @@
 # map kitty_mod+alt+t set_tab_title
 # map shift+cmd+i     set_tab_title
 
-
 #: You can also create shortcuts to go to specific tabs, with 1 being
 #: the first tab, 2 the second tab and -1 being the previously active
 #: tab, -2 being the tab active before the previously active tab and
@@ -2579,7 +2575,6 @@
 #: Next layout
 
 # map kitty_mod+l next_layout
-
 
 #: You can also create shortcuts to switch to specific layouts::
 
@@ -2623,7 +2618,6 @@
 
 # map kitty_mod+backspace change_font_size all 0
 # map cmd+0               change_font_size all 0
-
 
 #: To setup shortcuts for specific font sizes::
 
@@ -2696,7 +2690,6 @@
 
 #::  Select a hyperlink (i.e. a URL that has been marked as such by
 #::  the terminal program, for example, by `ls --hyperlink=auto`).
-
 
 #: The hints kitten has many more modes of operation that you can map
 #: to different shortcuts. For a full description see hints kitten
@@ -2910,4 +2903,3 @@
 #: }}}
 
 #: }}}
-

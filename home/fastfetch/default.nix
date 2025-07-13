@@ -30,17 +30,17 @@
         }
         {
           type = "kernel";
-          key = " ├  ";
+          key = " ├  kernel  ";
           keyColor = "31";
         }
         {
           type = "packages";
-          key = " ├ 󰏖 ";
+          key = " ├ 󰏖 packages";
           keyColor = "31";
         }
         {
           type = "shell";
-          key = " └  ";
+          key = " └  shell   ";
           keyColor = "31";
         }
         "break"
@@ -51,27 +51,27 @@
         }
         {
           type = "wmtheme";
-          key = " ├ 󰉼 ";
+          key = " ├ 󰉼 wmtheme ";
           keyColor = "32";
         }
         {
           type = "icons";
-          key = " ├ 󰀻 ";
+          key = " ├ 󰀻 icons   ";
           keyColor = "32";
         }
         {
           type = "cursor";
-          key = " ├  ";
+          key = " ├  cursor  ";
           keyColor = "32";
         }
         {
           type = "terminal";
-          key = " ├  ";
+          key = " ├  terminal";
           keyColor = "32";
         }
         {
           type = "terminalfont";
-          key = " └  ";
+          key = " └  font    ";
           keyColor = "32";
         }
         "break"
@@ -84,54 +84,55 @@
         {
           type = "cpu";
           format = "{1} ({3}) @ {7} GHz";
-          key = " ├  ";
+          key = " ├  cpu     ";
           keyColor = "33";
         }
         {
           type = "gpu";
           format = "{1} {2} @ {12} GHz";
-          key = " ├ 󰢮 ";
+          key = " ├ 󰢮 gpu     ";
           keyColor = "33";
         }
         {
           type = "memory";
-          key = " ├  ";
+          key = " ├  memory  ";
           keyColor = "33";
         }
         {
           type = "disk";
-          key = " ├ 󰋊 ";
+          key = " ├ 󰋊 disk    ";
           keyColor = "33";
         }
         {
           type = "monitor";
-          key = " ├  ";
+          key = " ├  monitor ";
           keyColor = "33";
         }
         {
           type = "player";
-          key = " ├ 󰥠 ";
+          key = " ├ 󰥠 player  ";
           keyColor = "33";
         }
         {
           type = "media";
-          key = " └ 󰝚 ";
+          key = " ├ 󰝚 media   ";
           keyColor = "33";
         }
-        "break"
         {
           type = "locale";
-          key = " Locale ";
+          key = " ├ 🌐locale  ";
+          keyColor = "33";
         }
         {
           type = "localip";
-          key = " IP     ";
+          key = " ├ 🖧 IP      ";
+          keyColor = "33";
         }
         {
           type = "uptime";
-          key = " Uptime ";
+          key = " └ 🏃Uptime  ";
+          keyColor = "33";
         }
-
       ];
     };
   };

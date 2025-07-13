@@ -1,7 +1,7 @@
-  { config, lib, ... }:
+{ lib, ... }:
 let
   accent = "#8f8f8f";
-  foreground = "#e2e2e2" ;
+  foreground = "#e2e2e2";
   muted = "#9b9b9b";
 in
 {

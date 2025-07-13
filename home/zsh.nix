@@ -1,7 +1,7 @@
-{  host,  ... }:
+{ host, ... }:
 {
   #imports = [
-   # ./starship/starship.nix
+  # ./starship/starship.nix
   #];
 
   programs.zsh = {
@@ -39,12 +39,12 @@
       v = "nvim";
       c = "clear";
       fr = "nh os switch --hostname ${host}";
-#      fu = "nh os switch --hostname ${host} --update";
+      #      fu = "nh os switch --hostname ${host} --update";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
-#      cat = "bat";
+      cat = "bat";
       gst = "git status";
-#      lg = "lazygit";
-#      man = "batman";
+      lg = "lazygit";
+      man = "batman";
       ls = "eza --icons --group-directories-first -1";
       ll = "eza --icons -lh --group-directories-first -1 --no-user --long";
       la = "eza --icons -lah --group-directories-first -1";

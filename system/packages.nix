@@ -1,10 +1,9 @@
-
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs = {
 
-  # Install Browser.
+    # Install Browser.
     #firefox.enable = true;
     chromium.enable = true;
 
@@ -43,9 +42,8 @@
     hardinfo2
     kitty
     mc
-    #neofetch
-    nethogs # A small 'net top' tool that groups traffic by process to show what is using bandwith
-    #nixfmt-rfc-style     # Nix style formater
+    nethogs # A small 'net top' tool. Groups traffic by process to show bandwith
+    nixfmt-tree # Nix style formater
     noto-fonts-cjk-sans # Chinese, Japanese & Korean fonts
     noto-fonts-cjk-serif # Chinese, Japanese & Korean fonts
     os-prober # For finding the windows boot loader when creatign the boot menu
@@ -56,7 +54,6 @@
     wget
     wl-clipboard
 
-    cmatrix # simulate matix chars
     unimatrix
 
     #Editor

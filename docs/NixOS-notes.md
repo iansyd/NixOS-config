@@ -54,6 +54,12 @@ Some examples:
 ```
 # To show stored generations
 nixos-rebuild list-generations 
+# or
+nix-env --list-generations --profile /nix/var/nix/profiles/system
+
+# To delete a generation
+sudo nix-env --delete-generations <list of numbers> --profile /nix/var/nix/profiles/system
+# where <list of numbers> is a number, or a list of space-separated numbers
 
 # To delete generations older than 30 days and any stored packages that are not linked to a remaining generation:
 nix-collect-garbage --delete-older-than 30d

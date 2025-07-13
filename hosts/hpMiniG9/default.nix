@@ -2,16 +2,19 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./users.nix
-      #./../../system                     # Standard modules - read from default.nix in this folder
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./users.nix
+    #./../../system                     # Standard modules - read from default.nix in this folder
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -20,7 +23,7 @@
   #>>>>> Custom
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
-    "nix-command" #--experimental-features 'nix-command flakes'
+    "nix-command" # --experimental-features 'nix-command flakes'
     "flakes"
   ];
 
@@ -45,10 +48,12 @@
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   #enableIPv6 = false;
   #firewall.enable = false;
   #useDHCP = lib.mkDefault true;
+
+  services.timesyncd.enable = true;
 
   # Set your time zone.
   time = {
@@ -57,18 +62,19 @@
   };
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_NZ.UTF-8";
-    LC_IDENTIFICATION = "en_NZ.UTF-8";
-    LC_MEASUREMENT = "en_NZ.UTF-8";
-    LC_MONETARY = "en_NZ.UTF-8";
-    LC_NAME = "en_NZ.UTF-8";
-    LC_NUMERIC = "en_NZ.UTF-8";
-    LC_PAPER = "en_NZ.UTF-8";
-    LC_TELEPHONE = "en_NZ.UTF-8";
-    LC_TIME = "en_NZ.UTF-8";
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_NZ.UTF-8";
+      LC_IDENTIFICATION = "en_NZ.UTF-8";
+      LC_MEASUREMENT = "en_NZ.UTF-8";
+      LC_MONETARY = "en_NZ.UTF-8";
+      LC_NAME = "en_NZ.UTF-8";
+      LC_NUMERIC = "en_NZ.UTF-8";
+      LC_PAPER = "en_NZ.UTF-8";
+      LC_TELEPHONE = "en_NZ.UTF-8";
+      LC_TIME = "en_NZ.UTF-8";
+    };
   };
 
   # Enable the X11 windowing system.
@@ -155,4 +161,3 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-

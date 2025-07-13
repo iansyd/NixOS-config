@@ -1,16 +1,13 @@
 {
   pkgs,
   inputs,
-  userSettings,
+  host,
+  username,
+  dotfilesDir,
   ...
 }:
-let
-  inherit (import ./variables.nix)
-    host
-    username;
-in
 {
-  imports = [ 
+  imports = [
     ./../../system
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -21,13 +18,12 @@ in
     backupFileExtension = "backup";
     extraSpecialArgs = {
       inherit
-        userSettings
         inputs
         username
         host
+        dotfilesDir
         ;
     };
-
 
     users.${username} = {
       imports = [
@@ -44,7 +40,7 @@ in
         # You should not change this value, even if you update Home Manager. If you do
         # want to update the value, then make sure to first check the Home Manager
         # release notes.
-        stateVersion = "24.11"; #READ COMMENT
+        stateVersion = "24.11"; # READ COMMENT
       };
     };
   };

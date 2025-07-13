@@ -2,15 +2,14 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix # Include the results of the hardware scan.
-      #./other-file-systems.nix         # file systems specific to this host
-      ./users.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix # Include the results of the hardware scan.
+    #./other-file-systems.nix         # file systems specific to this host
+    ./users.nix
+  ];
 
   # Bootloader.
   boot = {
@@ -27,16 +26,16 @@
 
     # Pick only one of the below networking options.
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
     enableIPv6 = false;
     #firewall.enable = false;
-    useDHCP = lib.mkDefault true;
+    #useDHCP = pkgs.lib.mkDefault true;
   };
 
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
-    "nix-command" #--experimental-features 'nix-command flakes'
+    "nix-command" # --experimental-features 'nix-command flakes'
     "flakes"
   ];
 
@@ -144,4 +143,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # DANGER Did you read the comment?
-  }
+}

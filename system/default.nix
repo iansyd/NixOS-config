@@ -1,4 +1,4 @@
-{ ...}:
+{ ... }:
 
 {
   imports = [
@@ -15,8 +15,6 @@
     ./gpg.nix
     ./openvpn.nix
 
-    # style
-
     # general
     ./automountUsb.nix
     ./starship.nix
@@ -26,15 +24,11 @@
     ./garbage.nix
     #./onedrive.nix
     ./packages.nix
-    ./shells.nix      # zsh and fish
+    ./shells.nix # zsh and fish
     ./sound.nix
-    ./time.nix
-    #./users.nix
 
-    # And then the window manager
+    # Desktop Environment
     ./kde.nix
 
   ];
 }
-
-

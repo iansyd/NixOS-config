@@ -1,5 +1,4 @@
-{ pkgs, userSettings, ... }:
-
+{ pkgs, dotfilesDir, ... }:
 {
   environment.systemPackages = with pkgs; [
     bash
@@ -10,13 +9,13 @@
     shellAliases = {
       ll = "ls -l";
       ".." = "cd ..";
-      flakeup = "nix flake update --flake " + userSettings.dotfilesDir;
-      nixup = "sudo nixos-rebuild switch --flake " + userSettings.dotfilesDir;
-      nixtest = "sudo nixos-rebuild test --flake " + userSettings.dotfilesDir;
-      homeup = "home-manager switch --flake " + userSettings.dotfilesDir;
-      flakeed = "vim " + userSettings.dotfilesDir + "/flake.nix";
-      nixed = "vim " + userSettings.dotfilesDir + "/configuration.nix";
-      homeed = "vim " + userSettings.dotfilesDir + "/home.nix";
+      flakeup = "nix flake update --flake " + dotfilesDir;
+      nixup = "sudo nixos-rebuild switch --flake " + dotfilesDir;
+      nixtest = "sudo nixos-rebuild test --flake " + dotfilesDir;
+      homeup = "home-manager switch --flake " + dotfilesDir;
+      flakeed = "vim " + dotfilesDir + "/flake.nix";
+      nixed = "vim " + dotfilesDir + "/configuration.nix";
+      homeed = "vim " + dotfilesDir + "/home.nix";
     };
   };
 }

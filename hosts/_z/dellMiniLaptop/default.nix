@@ -4,13 +4,20 @@
 # To rebuild:
 # $ sudo nixos-rebuild switch
 
-{ config, lib, pkgs, userSettings, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  userSettings,
+  inputs,
+  ...
+}:
 
 {
 
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
-    "nix-command" #--experimental-features 'nix-command flakes'
+    "nix-command" # --experimental-features 'nix-command flakes'
     "flakes"
   ];
 
@@ -36,20 +43,20 @@
   };
 
   networking = {
-	hostName = "dellMiniLaptop";
-	networkmanager.enable = true;
-	enableIPv6 = false;
-	#firewall.enable = false;
-	useDHCP = lib.mkDefault true;
-	# networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-	# networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
+    hostName = "dellMiniLaptop";
+    networkmanager.enable = true;
+    enableIPv6 = false;
+    #firewall.enable = false;
+    useDHCP = lib.mkDefault true;
+    # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+    # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
   };
 
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix    # Standard auto-config file
+    ./hardware-configuration.nix # Standard auto-config file
     #./other-file-systems.nix        # file systems specific to this host
-    ../../system                    # Standard modules - red from default.nix in this folder
+    ../../system # Standard modules - red from default.nix in this folder
   ];
 
   boot.loader.grub = {
@@ -57,7 +64,6 @@
     device = "/dev/sda";
     useOSProber = true;
   };
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on

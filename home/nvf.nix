@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   ...
 }:
 {
@@ -99,7 +98,7 @@
 
       spellcheck = {
         enable = true;
-        languages = ["en"];
+        languages = [ "en" ];
         programmingWordlist.enable = true;
       };
 
