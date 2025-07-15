@@ -1,0 +1,5 @@
+[Libinput][2][8][AlpsPS/2 ALPS DualPoint TouchPad]
+Enabled=true
+
+[Mouse]
+X11LibInputXAccelProfileFlat=true

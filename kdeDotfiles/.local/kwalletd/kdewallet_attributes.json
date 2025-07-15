@@ -1,0 +1,62 @@
+{
+    "$fdo_created": "1751824047",
+    "$fdo_modified": "1751862491",
+    "Brave Keys/Brave Safe Storage": {
+        "$fdo_created": "1751824520",
+        "$fdo_mime_type": "text/plain",
+        "$fdo_modified": "1751824520",
+        "attributes": {
+            "server": "Brave Keys",
+            "type": "plaintext",
+            "user": "Brave Safe Storage",
+            "xdg:schema": "org.qt.keychain"
+        }
+    },
+    "Network Management/{4f14b8ae-fab0-488f-a425-e147ef0274e4};802-11-wireless-security": {
+        "$fdo_created": "1751824067",
+        "$fdo_modified": "1751824067",
+        "attributes": {
+            "server": "Network Management",
+            "type": "map",
+            "user": "{4f14b8ae-fab0-488f-a425-e147ef0274e4};802-11-wireless-security"
+        }
+    },
+    "Network Management/{4f14b8ae-fab0-488f-a425-e147ef0274e4};802-11-wireless-security__0_": {
+        "$fdo_created": "1751824103",
+        "$fdo_mime_type": "text/plain",
+        "$fdo_modified": "1751824103",
+        "attributes": {
+            "server": "Network Management",
+            "type": "map",
+            "user": "{4f14b8ae-fab0-488f-a425-e147ef0274e4};802-11-wireless-security",
+            "xdg:schema": "org.qt.keychain"
+        }
+    },
+    "xdg-desktop-portal/brave-browser": {
+        "$fdo_created": "1751862491",
+        "$fdo_modified": "1751862491",
+        "attributes": {
+            "server": "xdg-desktop-portal",
+            "type": "binary",
+            "user": "brave-browser"
+        }
+    },
+    "xdg-desktop-portal/com.brave.Browser": {
+        "$fdo_created": "1751825470",
+        "$fdo_modified": "1751825470",
+        "attributes": {
+            "server": "xdg-desktop-portal",
+            "type": "binary",
+            "user": "com.brave.Browser"
+        }
+    },
+    "xdg-desktop-portal/com.microsoft.Edge": {
+        "$fdo_created": "1751862491",
+        "$fdo_modified": "1751862491",
+        "attributes": {
+            "server": "xdg-desktop-portal",
+            "type": "binary",
+            "user": "com.microsoft.Edge"
+        }
+    }
+}

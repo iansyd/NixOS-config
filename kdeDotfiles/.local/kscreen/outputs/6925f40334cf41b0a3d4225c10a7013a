@@ -1,0 +1,19 @@
+{
+    "id": "6925f40334cf41b0a3d4225c10a7013a",
+    "metadata": {
+        "fullname": "xrandr-unknown",
+        "name": "LVDS-1"
+    },
+    "mode": {
+        "refresh": 60.00720977783203,
+        "size": {
+            "height": 900,
+            "width": 1600
+        }
+    },
+    "overscan": 0,
+    "rgbrange": 0,
+    "rotation": 1,
+    "scale": 1,
+    "vrrpolicy": 2
+}

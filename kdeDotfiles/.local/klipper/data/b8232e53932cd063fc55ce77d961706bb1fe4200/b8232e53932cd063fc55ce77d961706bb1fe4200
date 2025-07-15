@@ -1,0 +1,6 @@
+inherit (import ./hosts/dellLaptop/variables.nix)
+              host
+              username
+              email
+              dotfilesDir
+              ;
