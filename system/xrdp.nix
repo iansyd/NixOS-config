@@ -2,14 +2,12 @@
 
 {
   services = {
-    xserver = {
-      enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma6.enable = true;
-    };
+    xserver.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
     xrdp = {
       enable = true;
-      defaultWindowManager = "startplasma-x11";
+      defaultWindowManager = "KWin";
       openFirewall = true;
     };
   };
