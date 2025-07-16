@@ -335,6 +335,18 @@ $ git add <addedfile>
 If this happens then use the --use-remote-sudo option instead of sudo command, i.e.
 $ nixos-rebuild switch --use-remote-sudo --flake .
 
+
+Reading and checking system log files
+=====================================
+
+```
+# Some examples
+journalctl -n 50        # to see the last 50 entries
+journalctl -n 50 -p err # to see the last 50 error entries
+journalctl -b 0         #to view the full log of the current boot
+journalctl -b -p crit   # to see critical messages since reboot (-b)
+```
+
 To Do
 =====
 
