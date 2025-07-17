@@ -10,6 +10,8 @@
 {
   imports = [
     ./../../system
+    # Custom for this host only
+    ./system
     inputs.home-manager.nixosModules.home-manager
   ];
 

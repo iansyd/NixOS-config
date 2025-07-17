@@ -29,7 +29,6 @@
 
     # Desktop Environment
     ./kde.nix
-    ./xrdp.nix
-
+    #./xrdp.nix
   ];
 }

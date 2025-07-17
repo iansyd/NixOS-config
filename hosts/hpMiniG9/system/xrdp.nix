@@ -1,0 +1,22 @@
+{ ... }:
+
+{
+  services = {
+    xserver.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    xrdp = {
+      enable = true;
+      defaultWindowManager = "startplasma-x11";
+      openFirewall = true;
+    };
+  };
+
+  # don't auto sleep
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
+  };
+}
