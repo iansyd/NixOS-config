@@ -1,46 +1,25 @@
 ## Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-# To rebuild:
-# $ sudo nixos-rebuild switch
 
-{
-  config,
-  lib,
-  pkgs,
-  userSettings,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    #./other-file-systems.nix        # file systems specific to this host
-    ../../system # Standard modules - red from default.nix in this folder
+    ./hardware-configuration.nix # Include the results of the hardware scan.
+    ./users.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  /*
-    # Use the systemd-boot EFI boot loader.
-    boot = {
-      kernelPackages = pkgs.linuxPackages_latest;
-      #systemd-boot.enable = true;
-      #efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        devices = [ "nodev" ];
-        efiSupport = true;
-        useOSProber = true;
-      };
+  # Use the systemd-boot EFI boot loader.
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
-  */
+  };
+
+  #>>>>> Custom
   # Ensure nix flakes are enabled
   nix.settings.experimental-features = [
     "nix-command" # --experimental-features 'nix-command flakes'
@@ -52,10 +31,6 @@
     pkgs.home-manager
     pkgs.logitech-udev-rules
   ];
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -63,6 +38,14 @@
   # set up flatpak
   services.flatpak.enable = true;
 
+  # enable bluetooth mouse
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
+  #>>>> End Custom
+
+  # networking
   networking = {
     hostName = "dellE7440";
 
@@ -72,13 +55,31 @@
 
     enableIPv6 = false;
     #firewall.enable = false;
-    useDHCP = lib.mkDefault true;
+    useDHCP = pkgs.lib.mkDefault true;
   };
+
+  services.timesyncd.enable = true;
 
   # Set your time zone.
   time = {
     timeZone = "Pacific/Auckland"; # time zone
     hardwareClockInLocalTime = false;
+  };
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_NZ.UTF-8";
+      LC_IDENTIFICATION = "en_NZ.UTF-8";
+      LC_MEASUREMENT = "en_NZ.UTF-8";
+      LC_MONETARY = "en_NZ.UTF-8";
+      LC_NAME = "en_NZ.UTF-8";
+      LC_NUMERIC = "en_NZ.UTF-8";
+      LC_PAPER = "en_NZ.UTF-8";
+      LC_TELEPHONE = "en_NZ.UTF-8";
+      LC_TIME = "en_NZ.UTF-8";
+    };
   };
 
   # Configure network proxy if necessary
@@ -94,6 +95,7 @@
   # };
 
   # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
   # Configure keymap in X11
@@ -157,6 +159,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # DANGER Did you read the comment?
 
 }

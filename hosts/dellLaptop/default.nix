@@ -7,11 +7,10 @@
 {
   imports = [
     ./hardware-configuration.nix # Include the results of the hardware scan.
-    #./other-file-systems.nix         # file systems specific to this host
     ./users.nix
   ];
 
-  # Bootloader.
+  # Use the systemd-boot EFI boot loader.
   boot = {
     #kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -19,6 +18,26 @@
       efi.canTouchEfiVariables = true;
     };
   };
+
+  #>>>>> Custom
+  # Ensure nix flakes are enabled
+  nix.settings.experimental-features = [
+    "nix-command" # --experimental-features 'nix-command flakes'
+    "flakes"
+  ];
+
+  # Enable home-manager & logitech unify dongle and mouse
+  environment.systemPackages = [
+    pkgs.home-manager
+    pkgs.logitech-udev-rules
+  ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # set up flatpak
+  services.flatpak.enable = true;
+  #>>>> End Custom
 
   # networking
   networking = {
@@ -33,32 +52,28 @@
     #useDHCP = pkgs.lib.mkDefault true;
   };
 
-  # Ensure nix flakes are enabled
-  nix.settings.experimental-features = [
-    "nix-command" # --experimental-features 'nix-command flakes'
-    "flakes"
-  ];
-
-  # Enable home-manager & logitech unify dongle and mouse
-  environment.systemPackages = [
-    pkgs.home-manager
-    pkgs.logitech-udev-rules
-  ];
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # set up flatpak
-  services.flatpak.enable = true;
+  services.timesyncd.enable = true;
 
   # Set your time zone.
   time = {
     timeZone = "Pacific/Auckland"; # time zone
     hardwareClockInLocalTime = false;
+  };
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_NZ.UTF-8";
+      LC_IDENTIFICATION = "en_NZ.UTF-8";
+      LC_MEASUREMENT = "en_NZ.UTF-8";
+      LC_MONETARY = "en_NZ.UTF-8";
+      LC_NAME = "en_NZ.UTF-8";
+      LC_NUMERIC = "en_NZ.UTF-8";
+      LC_PAPER = "en_NZ.UTF-8";
+      LC_TELEPHONE = "en_NZ.UTF-8";
+      LC_TIME = "en_NZ.UTF-8";
+    };
   };
 
   # Configure network proxy if necessary
@@ -74,6 +89,7 @@
   # };
 
   # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
   # Configure keymap in X11

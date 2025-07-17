@@ -23,12 +23,30 @@
       inputs.home-manager.follows = "home-manager";
     };
     nvf.url = "github:notashelf/nvf";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
     inputs@{ self, ... }:
+    let
+      # Small tool to iterate over each systems
+      eachSystem =
+        f:
+        inputs.nixpkgs.lib.genAttrs (import inputs.systems) (
+          system: f inputs.nixpkgs.legacyPackages.${system}
+        );
 
+      # Eval the treefmt modules from ./treefmt.nix
+      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+    in
     {
+
+      # for `nix fmt`
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+      # for `nix flake check`
+      checks = eachSystem (pkgs: {
+        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      });
 
       nixosConfigurations = {
 
