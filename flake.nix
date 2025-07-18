@@ -87,21 +87,22 @@
               ;
           };
         };
-        /*
-                dellE7440 = lib.nixosSystem {
-                  system = "x86_64-linux";
-                  modules = [
-                    ././hosts/dellE7440
-                    nix-index-database.nixosModules.nix-index
-                    # optional to also wrap and install comma
-                    { programs.nix-index-database.comma.enable = true; }
-                  ];
-                  specialArgs = {
-                    #inherit userSettings;
-                    inherit inputs;
-                  };
-                };
 
+        dellE7440 = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+          ././hosts/dellE7440
+          inputs.nix-index-database.nixosModules.nix-index
+          # optional to also wrap and install comma
+            { programs.nix-index-database.comma.enable = true; }
+          ];
+          specialArgs = {
+            #inherit userSettings;
+            inherit inputs;
+          };
+        };
+
+        /*
                 dellMiniLaptop = lib.nixosSystem {
                   system = "x86_64-linux";
                   modules = [

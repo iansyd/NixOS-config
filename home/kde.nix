@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   gtk = {
     enable = true;
     gtk2 = {
-      configLocation = "/home/ian/.config/.gtkrc-2.0-nix";
+      configLocation = "/home/${username}/.config/.gtkrc-2.0-nix";
     };
 
     cursorTheme = {

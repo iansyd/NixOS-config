@@ -9,9 +9,7 @@
 }:
 {
   imports = [
-    ./../../system
-    # Custom for this host only
-    ./system
+    ./../../system # Standard system
     inputs.home-manager.nixosModules.home-manager
   ];
 

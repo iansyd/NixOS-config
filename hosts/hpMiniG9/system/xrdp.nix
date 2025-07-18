@@ -3,8 +3,8 @@
 {
   services = {
     xserver.enable = true;
-    displayManager.sddm.enable = true;
-    desktopManager.plasma6.enable = true;
+    # displayManager.sddm.enable = true; # required, but already part of kde config
+    # desktopManager.plasma6.enable = true; # required, but already part of kde config
     xrdp = {
       enable = true;
       defaultWindowManager = "startplasma-x11";

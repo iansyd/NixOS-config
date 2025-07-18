@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix # Include the results of the hardware scan.
+    ./system # Additional system for this host only
     ./users.nix
   ];
 
