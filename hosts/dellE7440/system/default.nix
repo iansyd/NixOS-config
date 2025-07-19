@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  imports = [
+    ./rdp-client.nix
+  ];
+}

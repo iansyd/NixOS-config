@@ -5,8 +5,15 @@
 { pkgs, ... }:
 
 {
+  #>>>>> Custom
+  nixpkgs.config.permittedInsecurePackages = [
+    "broadcom-sta-6.30.223.271-57-6.12.38"
+  ];
+  #>>>>> Custom End
+
   imports = [
     ./hardware-configuration.nix # Include the results of the hardware scan.
+    ./system # Additional system for this host only
     ./users.nix
   ];
 
@@ -26,10 +33,9 @@
     "flakes"
   ];
 
-  # Enable home-manager & logitech unify dongle and mouse
   environment.systemPackages = [
-    pkgs.home-manager
-    pkgs.logitech-udev-rules
+    pkgs.home-manager # Enable home-manager
+    pkgs.logitech-udev-rules # logitech unify dongle and mouse
   ];
 
   # Allow unfree packages

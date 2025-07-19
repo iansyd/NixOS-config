@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix # Include the results of the hardware scan.
+    ./system # custom for this host only
     ./users.nix
   ];
 
@@ -26,10 +27,9 @@
     "flakes"
   ];
 
-  # Enable home-manager & logitech unify dongle and mouse
   environment.systemPackages = [
-    pkgs.home-manager
-    pkgs.logitech-udev-rules
+    pkgs.home-manager # Enable home-manager
+    pkgs.logitech-udev-rules # logitech unify dongle and mouse
   ];
 
   # Allow unfree packages
