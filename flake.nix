@@ -97,8 +97,13 @@
             { programs.nix-index-database.comma.enable = true; }
           ];
           specialArgs = {
-            #inherit userSettings;
             inherit inputs;
+            inherit (import ./hosts/dellLaptop/variables.nix)
+              host
+              username
+              email
+              dotfilesDir
+              ;
           };
         };
 
