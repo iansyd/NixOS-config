@@ -1,6 +1,7 @@
-{ pkgs, ...}: {
+{ pkgs, ... }:
+{
 
-environment.systemPackages = [
+  environment.systemPackages = [
     pkgs.remmina
     pkgs.freerdp
   ];
