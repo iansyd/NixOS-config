@@ -2,6 +2,6 @@
 
 {
   imports = [
-    #./xrdp.nix
+    ./xrdp.nix
   ];
 }

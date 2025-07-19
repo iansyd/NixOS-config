@@ -5,17 +5,41 @@ Git Commands Summary/Learning
 Basic Command
 -------------
 
-# What version of git do I have?
-$ which git
-Or
-$ git --version
+```
+which git # What version of git do I have - option 1?
+git --version # What version of git do I have - option 2?
 
-# commit
-$ git commit -m "Commit description"
+git add . # add new files
+git commit -m "Commit description" # Commit changes
+git push github main # push # An example push ti a remote repo 
 
-# push
-$ git push github main
+git log # Show all commits in reverse chronological order
 
+git show HEAD # Show the changes of the most recent commit
+git show HEAD~1 # Same as above, but go back one commit
+git show <commit-hash> # same as above, but for the relevant hash from git log
+
+git revert <commit-hash> # creates a new hash the same as the one at <commit-hash>
+
+git reset # unstages all changes
+git reset file1 file2 # unstages only the specified files
+git reset folder1/ # unstages all changes in folder1
+
+# move the current branch back by one commit, leaving the working tree and index unchanged
+git reset --soft HEAD~1 
+
+#resets the index but not the working tree
+git reset --mixed HEAD~1 
+
+# resets the index and working tree, discarding any changes to tracked files since the specified commit
+git reset --hard HEAD~1 
+
+# resets your current branch's HEAD to the last commit fetched from the remote repository
+git reset --hard origin/HEAD 
+
+<commit-hash> # rolls back 
+
+```
 
 ### Pushing to GIT
 a. Staging:     $ git add .
@@ -40,6 +64,7 @@ then an error will pop up when you attempt to update home-manager with
 $home-manager switch --flake .
 To fix this the new file  must be added using
 $ git add <addedfile>
+
 
 Setting up a git repo on github
 -------------------------------
@@ -84,3 +109,7 @@ git commit -m "initial"
 git push github main
 ```
 (Authenticiation check will be required for the first upload)
+
+
+Rolling back
+------------
